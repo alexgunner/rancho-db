@@ -1,0 +1,35 @@
+<%= form_with(model: discount, local: true) do |form| %>
+  <% if discount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
+
+      <ul>
+      <% discount.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :discount_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_field :description, id: :discount_description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Porcentaje de descuento" %>
+    <%= form.text_field :amount, id: :discount_amount, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-primary" %>
+      <%= link_to 'Cancelar', '/discounts', class: "btn btn-danger" %>
+    </center>
+  </div>
+<% end %>

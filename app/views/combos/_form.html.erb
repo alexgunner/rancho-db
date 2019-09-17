@@ -1,0 +1,55 @@
+<%= form_with(model: combo, local: true) do |form| %>
+  <% if combo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(combo.errors.count, "error") %> prohibited this combo from being saved:</h2>
+
+      <ul>
+      <% combo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :combo_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_area :description, id: :combo_description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Costo" %>
+    <%= form.text_field :sale_cost, id: :combo_sale_cost, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Sucursal" %>
+    <%= form.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Seleccione una sucursal"}, {class: "form-control"} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Imagen" %>
+    <%= form.file_field :picture, id: :picture, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Guarniciones" %>
+    <%= form.collection_check_boxes :fitting_ids, Fitting.all, :id, :name do |f| %>
+        <div class="collection-check-box">
+          <%= f.check_box %>
+          <%= f.label %>
+        </div>
+      <% end %>
+  </div>
+
+  <div class="actions">
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-primary" %>
+      <%= link_to 'Cancelar', '/combos', class: "btn btn-danger" %>
+    </center>
+  </div>
+<% end %>

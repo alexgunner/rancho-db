@@ -1,0 +1,26 @@
+<center>
+	<div class="invoice">
+		<center>
+			<h3>Rancho Viejo</h3>
+			<h5>Sucursal 1</h5>
+			<p>
+				Av. América #322<br>
+				Tel: 44444444
+			</p>
+			<h6>Fecha: <%= Date.today %></h6>
+			<h6>Cajero: Cajero 1</h6>
+			<br>
+		</center>
+		---------------------------------------<br>
+		<% total = 0 %>
+		Monto inicial: 0<br>
+		Órdenes en total: <%= @number_orders %><br>
+		Total ingresos: Bs. 10000<br>
+		Total tarjetas: 0<br>
+		Total efectivo: 0<br>
+		Total a entregar: Bs. 1000<br>
+		Efectivo entregado: Bs. 1000<br>
+		Diferencia: 0
+	</div>
+</center>
+<%= link_to "Volver", :back, class: "btn btn-danger" %>

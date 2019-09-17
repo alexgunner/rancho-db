@@ -1,0 +1,24 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @combo.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @combo.description %>
+</p>
+
+<p>
+  <strong>Sale cost:</strong>
+  <%= @combo.sale_cost %>
+</p>
+
+<p>
+  <strong>Imagen:</strong>
+  <%= image_tag @combo.picture.url(:thumb) %>
+</p>
+
+<%= link_to 'Edit', edit_combo_path(@combo) %> |
+<%= link_to 'Back', combos_path %>

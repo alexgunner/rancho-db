@@ -1,0 +1,39 @@
+
+
+<h1>Combos</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Crear combo', new_combo_path, class: "btn btn-primary btn-block" %>
+  </div>
+</div>
+
+<table class="table table-tripped table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Costo</th>
+      <th>Sucursal</th>
+      <th>Imagen</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @combos.each do |combo| %>
+      <tr>
+        <td><%= combo.name %></td>
+        <td><%= combo.description %></td>
+        <td><%= combo.sale_cost %></td>
+        <td><%= combo.branch.name %></td>
+        <td><%= image_tag combo.picture.url(:thumb) %></td>
+        <td><%= link_to 'Editar', edit_combo_path(combo) %></td>
+        <td><%= link_to 'Productos', '/combos/' + combo.id.to_s + '/products' %></td>
+        <!--<td><%= link_to 'Eliminar', combo, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

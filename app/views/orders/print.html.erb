@@ -1,0 +1,101 @@
+	<style>
+		table {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+  margin-left: 560px;
+}
+
+td {
+  border-left: solid 10px #000;
+  padding: 0; 
+  margin: 0; 
+  width: 0px; 
+  height: 10px; 
+}
+
+td.black { border-color: #000; }
+td.white { border-color: #fff; }
+	</style>
+	<div class="invoice" style="font-size: 13px; text-align: center;">
+		
+			***MIKHUNA WOK***<br>
+			
+			AV. MELCHOR URQUIDI ESQ. AV. PORTALES<br>
+			TEL: 4036000 - 60744426<br>
+			COCHABAMBA - BOLIVIA <br><br>
+
+			SFC: 1<br>
+			FACTURA<br>
+		----------------------------------------------------------------------------------------<br>
+		NIT: 3146317019<br>
+		FACTURA No: <%= @invoice.id %><br>
+		AUTORIZACION No: 384401900066593<br>
+		----------------------------------------------------------------------------------------<br>
+		Restaurantes<br><br>
+
+		FECHA: <%= DateTime.now.strftime("%d/%m/%Y") %><br>
+		SR.(ES): <%= @order.name.upcase %><br><br>
+		NIT/CI: <%= @order.nit %><br>
+		----------------------------------------------------------------------------------------<br>
+		CANT. &nbsp P. UNT. &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp DETALLE &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp SUBTOTAL<br>
+		----------------------------------------------------------------------------------------<br>
+		<% total = 0 %>
+
+		
+			<% @items.each do |item| %>
+				<% if item.branch_product_id == nil %>
+					<%= item.quantity %> x <%= Combo.find(item.combo_id).name %> Bs. <%= Combo.find(item.combo_id).sale_cost %> &nbsp Bs. <%= item.quantity * Combo.find(item.combo_id).sale_cost %><br>
+					<% total += item.quantity * Combo.find(item.combo_id).sale_cost %>
+				<% end %>
+				<% if item.combo_id == nil %>
+					<span style="margin-left: -190px;"><%= item.quantity %> &nbsp&nbsp x &nbsp&nbsp<%= '%.2f' % BranchProduct.find(item.branch_product_id).sale_cost %> </span><br> 
+					<span style="margin-left: 80px;"><%= BranchProduct.find(item.branch_product_id).product.name %> &nbsp <%= '%.2f' % (item.quantity * BranchProduct.find(item.branch_product_id).sale_cost) %></span><br>
+					<% total += item.quantity * BranchProduct.find(item.branch_product_id).sale_cost %>
+				<% end %>
+			<% end %>
+			
+		
+		<br>
+		
+		<span style="margin-left: 120px;">
+			Total a Pagar: &nbsp&nbsp&nbsp Bs. <span style="margin-left: 20px;"><%= '%.2f' % total %></span><br><br>
+			<% if !@order.amount_payed.nil? %>
+				<span style="margin-left: 120px;">Efectivo  <span style="margin-left: 80px;"><%= '%.2f' % @order.amount_payed %></span></span><br>
+				<span style="margin-left: 120px;">Cambio:  <span style="margin-left: 80px;"><%= '%.2f' % (@order.amount_payed - total) %></span></span><br>
+			<% end %>
+		</span>
+		<br><br>
+
+		SON: <%= (@order.literal total).upcase %> y 
+		<% if total.modulo(1) != 0 %>
+			<%= '%.2f' % (total.modulo(1)*100) %>/100
+		<% else %>
+			00/100
+		<% end %>
+		Bolivianos
+		<br>
+		----------------------------------------------------------------------------------------<br>
+		CODIGO DE CONTROL: <%= @order.code_control @invoice.id, @order.nit.to_i, total %><br>
+		FECHA LIMITE DE EMISION: 25/05/2019<br><br>
+
+		<span style="margin-left: 500px;">
+			<% qr = RQRCode::QRCode.new("3146317019|1|" + Dosification.first.authorization_number.to_s + "|" + DateTime.now.strftime("%d").to_s + "/" + DateTime.now.strftime("%m").to_s + "/" + DateTime.now.strftime("%Y").to_s + "|" + total.to_s + "|" + @order.amount_payed.to_s + "|" + (@order.code_control @order.invoice.id, @order.nit.to_i, total) + "|" + @order.nit.to_s, :size => 4, :level => :l ) %>
+			<%= raw qr.as_html %>
+		</span>
+
+		ESTA FACTURA CONTRIBUYE AL DESARROLLO<br> 
+		DEL PAIS, EL USO ILICITO DE ESTA SERA SANCIONADO DE<br> ACUERDO A LA LEY.<br><br>
+
+		Ley 453: Tienes derecho a recibir información <br>sobre características y contenidos de los productos que consumes.<br><br>
+		
+		<%= link_to "Orden #" + @order.id.to_s, "/order_details/" + @order.id.to_s, class: "btn btn-danger" %>
+
+	</div>
+
+	<script type="text/javascript">
+		window.onload = function() {
+			window.print();
+		};
+	</script>

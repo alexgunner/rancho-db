@@ -1,0 +1,13 @@
+<%= form_tag("/combos/" + @combo_id + "/products/create", method: "post") do %>
+ 
+	<div class="form-group">
+		<%= label_tag(:product, "Producto:") %>  
+		<%= collection_select(:product, :product_id, @products, :id, :name, {prompt: "Seleccione un producto"}, {class: "form-control"}) %><br>		
+	</div> 
+ 	<div class="form-group">
+ 		<center>
+ 			<%= submit_tag("Agregar", class: "btn btn-primary") %>
+ 			<%= link_to "Cancelar", '/combos/' + @combo_id.to_s + '/products', class: "btn btn-danger" %>
+ 		</center>
+ 	</div>
+<% end %>

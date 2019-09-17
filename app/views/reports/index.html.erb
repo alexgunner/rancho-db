@@ -1,0 +1,80 @@
+<div class="row">
+	<div class="col-lg-6">
+		<div class="card">
+		  <div class="card-body">
+		    <h5 class="card-title">Reporte de órdenes</h5>
+		    <p class="card-text">Ingrese las fechas entre las cuales quiere ver el reporte de órdenes</p>
+		    <%= form_tag("/orders_report", method: "get") do %>
+		    	<label>Fecha de inicio</label>
+		    	<%= date_select :init_date, :initial_date %><br>
+		    	<label>Fecha de fin</label>
+		    	<%= date_select :end_date, :final_date %><br>
+			<label>Sucursal</label>
+			<%= collection_select(:store, :store_id, Branch.all, :id, :name) %>
+		    	<%= submit_tag "Aceptar", class: "btn btn-success btn-block" %>
+		    <% end %>
+		  </div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="card">
+		  <div class="card-body">
+		    <h5 class="card-title">Reporte de productos y cantidad vendida</h5>
+		    <p class="card-text">Ingrese las fechas entre las cuales quiere ver el reporte de la cantidad vendida por productos</p>
+		    <%= form_tag("/products_report", method: "get") do %>
+		    	<label>Fecha de inicio</label>
+		    	<%= date_select :init_date, :initial_date %><br>
+		    	<label>Fecha de fin</label>
+		    	<%= date_select :end_date, :final_date %><br>
+			<label>Sucursal</label>
+                        <%= collection_select(:store, :store_id, Branch.all, :id, :name) %>
+		    	<%= submit_tag "Aceptar", class: "btn btn-success btn-block" %>
+		    <% end %>
+		  </div>
+		</div>
+	</div>
+</div>
+
+
+<br />	
+<h2>Contabilidad</h2>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="card">
+		  <div class="card-body">
+		    <h5 class="card-title">Reporte de órdenes Excel</h5>
+		    <p class="card-text">Ingrese las fechas entre las cuales quiere ver el reporte de órdenes</p>
+		    <%= form_tag("/accounting_report", method: "get") do %>
+		    	<label>Fecha de inicio</label>
+		    	<%= date_select :init_date, :initial_date %><br>
+		    	<label>Fecha de fin</label>
+		    	<%= date_select :end_date, :final_date %><br>
+			<label>Sucursal</label>
+                        <%= collection_select(:store, :store_id, Branch.all, :id, :name) %>
+		    	<%= submit_tag "Aceptar", class: "btn btn-success btn-block" %>
+		    <% end %>
+		  </div>
+		</div>
+	</div>
+
+
+	<div class="col-lg-6">
+		<div class="card">
+		  <div class="card-body">
+		    <h5 class="card-title">Reporte de órdenes anuladas</h5>
+		    <p class="card-text">Ingrese las fechas entre las cuales quiere ver el reporte de órdenes anuladas</p>
+		    <%= form_tag("/accounting_report_disabled", method: "get") do %>
+		    	<label>Fecha de inicio</label>
+		    	<%= date_select :init_date, :initial_date %><br>
+		    	<label>Fecha de fin</label>
+		    	<%= date_select :end_date, :final_date %><br>
+<label>Sucursal</label>
+                        <%= collection_select(:store, :store_id, Branch.all, :id, :name) %>
+		    	<%= submit_tag "Aceptar", class: "btn btn-success btn-block" %>
+		    <% end %>
+		  </div>
+		</div>
+	</div>
+</div>
+

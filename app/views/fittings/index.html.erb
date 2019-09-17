@@ -1,0 +1,35 @@
+
+
+<h1>Guarniciones</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Crear guarnición', new_fitting_path, class: "btn btn-primary btn-block" %>
+  </div>
+</div>
+
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Costo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fittings.each do |fitting| %>
+      <tr>
+        <td><%= fitting.name %></td>
+        <td><%= fitting.description %></td>
+        <td><%= fitting.cost %></td>
+        <td><%= link_to 'Editar', edit_fitting_path(fitting) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

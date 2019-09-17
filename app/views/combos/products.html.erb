@@ -1,0 +1,32 @@
+<h1>Sucursales</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Agregar producto', '/combos/' + @combo_id + '/products/new', class: "btn btn-primary btn-block" %>    
+  </div>
+  <div class="col-lg-3">
+    <%= link_to 'Volver', '/combos/', class: "btn btn-danger btn-block" %>    
+  </div>
+</div>
+
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Categoría</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @combo_products.each do |combo_product| %>
+      <tr>
+        <td><%= combo_product.branch_product.product.name %></td>
+        <td><%= combo_product.branch_product.product.description %></td>
+        <td><%= combo_product.branch_product.product.category.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

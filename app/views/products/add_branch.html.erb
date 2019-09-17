@@ -1,0 +1,19 @@
+<%= form_tag("/products/" + @product_id + "/branches/create", method: "post") do %>
+  <div class="form-group">
+  	<%= label_tag(:cost, "Precio:") %>
+	  <%= number_field_tag(:cost, "", class: "form-control") %>
+  </div>
+	  	
+  <div class="form-group">
+  	<%= label_tag(:branch, "Sucursal:") %>  
+  	<%= collection_select(:branch, :branch_id, Branch.all, :id, :name, {prompt: "Seleccione una sucursal"}, {class: "form-control"}) %>	
+  </div>
+  
+  <div class="form-group">
+    <center>
+      <%= submit_tag("Agregar", class: "btn btn-success") %>  
+      <a href="/products/<%= @product_id %>/branches" class="btn btn-danger">Cancelar</a>
+    </center>
+  </div>
+  
+<% end %>

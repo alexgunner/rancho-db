@@ -1,0 +1,152 @@
+<h1>Órdenes entre el <%= @init_date %> y el <%= @final_date %></h1>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+		  <div class="card-body">
+		    <h5 class="card-title">Detalles</h5>
+		    <strong>Número de órdenes: </strong><%= @orders.count %><br>
+				<strong>Se generó un total de</strong> Bs. <%= @total_sold %>
+        <button class="btn btn-primary" id="xlsdonwload">Exportar xls</button>
+        <a class="btn btn-primary" id="txtdonwload" href="accounting_disabled_txt">Exportar txt</a>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<table class="table table-tripped table-hover" id="accounting-report-disabled">
+  <thead>
+    <tr>
+      <th>Nro</th>
+      <th>Fecha</th>
+      <th>Nro Factura</th>
+      <th>Nro Autorización</th>
+      <th>Estado</th>
+      <th>NIT/CI</th>
+      <th>Nombre o Razón Social</th>
+      <th>Importe Total Venta</th>
+      <th>Importe ICE/IEHD/Tasas</th>
+      <th>Exportac. y Operac. Excentas</th>
+      <th>Ventas Grabadas Tasa Cero</th>
+      <th>SUBTOTAL</th>
+      <th>Desc. Bonific. y Rebajas</th>
+      <th>Importe Base para Credito Fiscal</th>
+      <th>Debito Fiscal</th>
+      <th>Codigo de Control</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% count = 1 %>
+    <% @invoices.each_with_index do |invoice, index| %>
+      <% if !Invoice.find_by(order_id: invoice.order.id).nil? and invoice.order.order_state == false %>
+      <tr>
+        <td><%= count %></td>
+        <td><%= invoice.order.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= Invoice.find_by(order_id: invoice.order.id).id %></td>
+        <td><%= Dosification.first.authorization_number %></td>
+        <td>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            V
+          <% else %>
+            A
+          <% end %>
+        </td>
+        <td>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            <% if invoice.order.nit.empty? %>
+              00
+            <% else %>
+              <%= invoice.order.nit %>
+            <% end %>
+          <% else %>
+            
+          <% end %>
+        </td>
+        <td>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            <% if invoice.order.name.empty? %>
+              SN
+            <% else %>
+              <%= invoice.order.name.upcase %>
+            <% end %>
+          <% else %>
+            ANULADA
+          <% end %>
+        </td>
+        <td>
+          <% total = 0 %>
+          <% invoice.order.order_items.each do |order_item| %>
+            <% if order_item.branch_product_id != nil %>
+              <% total += order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+            <% else %>
+              <% total += order_item.quantity * Combo.find(order_item.combo_id).sale_cost %>
+            <% end %>
+          <% end %>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            <%= number_to_currency(total, unit: "", separator: ",", delimiter: ".", precision: 2) %>
+          <% else %>
+            0,00
+          <% end %>
+        </td>
+        <td>0,00</td>
+        <td>0,00</td>
+        <td>0,00</td>
+        <td>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            <%= number_to_currency(total, unit: "", separator: ",", delimiter: ".", precision: 2) %>
+          <% else %>
+            0,00
+          <% end %>
+        </td>
+        <td>0,00</td>
+        <td>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            <%= number_to_currency(total, unit: "", separator: ",", delimiter: ".", precision: 2) %>
+          <% else %>
+            0,00
+          <% end %>
+        </td>
+        <td>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            <%= number_to_currency((total * 0.13), unit: "", separator: ",", delimiter: ".", precision: 2) %>
+          <% else %>
+            0,00
+          <% end %>          
+        </td>
+        <td>
+          <% if invoice.order.order_state == true or invoice.order.order_state.nil? %>
+            <%= invoice.order.code_control invoice.id, invoice.order.nit.to_i, total %>
+          <% else %>
+            0
+          <% end %>
+        </td>
+      </tr>
+      <% count += 1 %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<script>
+	$(document).ready(function(){
+		console.log("hello");
+    TableExport(document.getElementById("accounting-report-disabled"), {
+      headers: true,
+      footer: true,
+      formats: ['xls'],
+      position: 'top',
+      bootstrap: true
+    });
+
+    $('.xls').hide();
+	});
+
+
+  $('#xlsdonwload').on('click', function(){
+    $('.xls').click();
+  });
+</script>

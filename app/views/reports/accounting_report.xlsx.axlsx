@@ -1,0 +1,4 @@
+wb = xlsx_package.workbook #create excel book
+wb.add_worksheet(name: "Stock Status") do |sheet|
+sheet.add_row ["Input Criteria"]
+end

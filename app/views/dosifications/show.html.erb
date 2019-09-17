@@ -1,0 +1,29 @@
+
+
+<p>
+  <strong>Authorization number:</strong>
+  <%= @dosification.authorization_number %>
+</p>
+
+<p>
+  <strong>Dosification key:</strong>
+  <%= @dosification.dosification_key %>
+</p>
+
+<p>
+  <strong>Valid until:</strong>
+  <%= @dosification.valid_until %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @dosification.activity %>
+</p>
+
+<p>
+  <strong>Branch:</strong>
+  <%= @dosification.branch %>
+</p>
+
+<%= link_to 'Edit', edit_dosification_path(@dosification) %> |
+<%= link_to 'Back', dosifications_path %>

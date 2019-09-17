@@ -1,0 +1,19 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @fitting.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @fitting.description %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @fitting.cost %>
+</p>
+
+<%= link_to 'Edit', edit_fitting_path(@fitting) %> |
+<%= link_to 'Back', fittings_path %>

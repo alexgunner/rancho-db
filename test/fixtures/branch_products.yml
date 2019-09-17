@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sale_cost: 1.5
+  product: one
+  branch: one
+
+two:
+  sale_cost: 1.5
+  product: two
+  branch: two

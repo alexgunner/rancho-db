@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sistema Restaurante</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://unpkg.com/tableexport@5.1.0/dist/css/tableexport.css">
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/tableexport/dist/js/tableexport.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+
+  <body>
+    <% if current_user %>
+  	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  	  <a class="navbar-brand" href="/">Inicio</a>
+  	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  	    <span class="navbar-toggler-icon"></span>
+  	  </button>
+
+  	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  	    <ul class="navbar-nav mr-auto">
+          <% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+    	      <li class="nav-item">
+    	        <a class="nav-link" href="/categories">Categorías</a>
+    	      </li>
+          <% end %>
+          <% if current_user.user_role.id == 3 and current_user.user_role.id != 4 and current_user.user_role.id != 5 %>
+    	      <li class="nav-item">
+    	        <a class="nav-link" href="/branches">Sucursales</a>
+    	      </li>
+          <% end %>
+          <% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+            <li class="nav-item">
+              <a class="nav-link" href="/fittings">Guarniciones</a>
+            </li>
+          <% end %>
+          <% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+    	      <li class="nav-item">
+    	        <a class="nav-link" href="/products">Productos</a>
+    	      </li>
+          <% end %>
+          <% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+    	      <li class="nav-item">
+    	        <a class="nav-link" href="/combos">Combos</a>
+    	      </li>
+          <% end %>
+          <% if current_user.user_role.id != 2 or current_user.user_role.id == 4 %>
+    	      <li class="nav-item">
+    	        <a class="nav-link" href="/orders">Órdenes</a>
+    	      </li>
+          <% end %>
+          <% if current_user.user_role.id != 1 and current_user.user_role.id != 4 %>
+            <li class="nav-item">
+              <a class="nav-link" href="/dosifications">Dosificaciones</a>
+            </li>
+          <% end %>
+          <% if current_user.user_role.id == 3 and current_user.user_role.id != 4 %>
+            <li class="nav-item">
+              <a class="nav-link" href="/discounts">Descuentos</a>
+            </li>
+          <% end %>
+          <% if current_user.user_role.id != 1 or current_user.user_role.id == 4 %>
+            <li class="nav-item">
+              <a class="nav-link" href="/reports">Reportes</a>
+            </li>
+          <% end %>
+          <% if current_user.user_role.id == 3 %>
+            <li class="nav-item">
+              <a class="nav-link" href="/users">Usuarios</a>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete, class: "nav-link") %>
+          </li>
+  	    </ul>
+  	  </div>
+  	</nav>
+    <% end %>
+  	<div class="container-fluid">
+      <% if notice.present? %>
+        <div class="alert alert-primary">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <div id="notice"> <%= notice %> </div>
+        </div>
+      <% end %>
+      <div class="page-content">
+          <%= yield %>
+      </div>
+  	</div>
+  </body>
+</html>

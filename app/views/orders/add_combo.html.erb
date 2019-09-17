@@ -1,0 +1,10 @@
+<%= form_tag("/orders/" + @order.id.to_s + "/products/create_combo", method: "post") do %>
+ 
+  <%= label_tag(:combo, "Producto:") %>  
+  <%= collection_select(:combo, :combo_id, @combos, :id, :name) %><br>
+
+  <%= label_tag(:quantity, "Cantidad:") %>
+  <%= text_field_tag(:quantity) %><br>
+
+  <%= submit_tag("Agregar") %>
+<% end %>

@@ -1,0 +1,72 @@
+<h3>Detalles del cliente</h3>
+        <strong>Nombre:</strong> <%= @order.name %><br>
+        <strong>NIT:</strong> <%= @order.nit %><br>
+        <hr class="divider">
+
+        <h3>Productos</h3>
+
+        <table class="table table-hover table-stripped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Cantidad</th>
+              <th>Precio unitario</th>
+              <th>Guarniciones</th>
+              <th>Subtotal</th> 
+            </tr>
+          </thead>
+
+          <tbody>
+            <% total = 0 %>
+            <% @order_items.each do |order_item| %>
+              <% if order_item.branch_product_id != nil %>
+                <tr>
+                  <td><%= BranchProduct.find(order_item.branch_product_id).product.name %></td>
+                  <td><%= BranchProduct.find(order_item.branch_product_id).product.category.name %></td>
+                  <td><%= order_item.quantity %></td>
+                  <td>Bs. <%= BranchProduct.find(order_item.branch_product_id).sale_cost %></td>
+                  <td>
+                    <% order_item.order_item_fittings.each do |o| %>
+                      <%= o.fitting.name %>
+                      <% if o != order_item.order_item_fittings.last %>
+                      ,
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% total += order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+                    Bs. <%= order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr>
+              <td colspan="5">Total</td>
+              <td>Bs. <%= total %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br>
+
+        <hr class="divider">
+        <strong>Total:</strong> Bs. <%= total %>
+        <strong>Efectivo:</strong> Bs. <%= @order.amount_payed %>
+        <% if @order.amount_payed != nil %>
+          <strong>Cambio: </strong> Bs. <%= @order.amount_payed - total %>
+        <% end %>
+        <br>
+
+
+<br>
+<br>
+
+<% if @order.status == false %>
+  <%= link_to "Cerrar Órden", '/orders/' + @order.id.to_s + '/close', class: "btn btn-primary" %>
+  
+<% else %>
+  <%= link_to "Imprimir comanda", '/orders/' + @order.id.to_s + '/partial_print', class: "btn btn-primary" %>
+  <%= link_to "Dosificacion no habilitada", '#', class: "btn btn-primary disabled" %>
+  <%= link_to 'Volver', '/orders', class: "btn btn-danger" %>
+<% end %>

@@ -1,0 +1,39 @@
+<h1>Probar código de control</h1>
+
+<%= form_tag("test_code_control", method: "get") do %>
+	<div class="form-group">
+		<%= label_tag "Número de autorización" %>
+		<%= text_field_tag :auth_number, nil, class: "form-control" %>	
+	</div>
+
+	<div class="form-group">
+		<%= label_tag "Número de factura" %>
+		<%= text_field_tag :in_number, nil, class: "form-control" %>	
+	</div>
+
+	<div class="form-group">
+		<%= label_tag "Número de NIT" %>
+		<%= text_field_tag :nit_number, nil, class: "form-control" %>	
+	</div>
+
+	<div class="form-group">
+		<%= label_tag "Fecha" %>
+		<%= date_field_tag :in_date, nil, class: "form-control" %>	
+	</div>
+
+	<div class="form-group">
+		<%= label_tag "Monto" %>
+		<%= text_field_tag :in_amount, nil, class: "form-control" %>	
+	</div>
+
+	<div class="form-group">
+		<%= label_tag "Llave" %>
+		<%= text_field_tag :in_key, nil, class: "form-control" %>	
+	</div>
+
+	<div class="form-group">
+		<%= submit_tag "Aceptar", class: "btn btn-success" %>
+		<%= link_to "Cancelar", :back, class: "btn btn-danger" %>
+	</div>
+	
+<% end %>

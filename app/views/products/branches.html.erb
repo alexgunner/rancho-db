@@ -1,0 +1,40 @@
+
+
+<h1>Sucursales</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Agregar sucursal', '/products/' + @product_id + '/branches/new', class: "btn btn-primary btn-block"  %>
+  </div>
+  <div class="col-lg-3">
+    <%= link_to 'Volver', '/products', class: "btn btn-danger btn-block" %>
+  </div>
+</div>
+
+<table class="table table-tripped table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Categorīa</th>
+      <th>Costo</th>
+      <th>Sucursal</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @branch_products.each do |branch_product| %>
+      <tr>
+        <td><%= branch_product.product.name %></td>
+        <td><%= branch_product.product.description %></td>
+        <td><%= branch_product.product.category.name %></td>
+        <td><%= branch_product.sale_cost %></td>
+        <td><%= branch_product.branch.name %></td>
+        <td><%= link_to 'Editar', '/update_branch_cost/' + branch_product.id.to_s %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

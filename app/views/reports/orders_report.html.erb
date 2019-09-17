@@ -1,0 +1,104 @@
+<h1>Órdenes entre el <%= @init_date %> y el <%= @final_date %></h1>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+		  <div class="card-body">
+		    <h5 class="card-title">Detalles</h5>
+		    <strong>Número de órdenes: </strong><%= @orders.count %><br>
+				<strong>Se generó un total de</strong> Bs. <%= @total_sold %>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<table class="table table-tripped table-hover" id="orders-report">
+  <thead>
+    <tr>
+      <th># Factura</th>
+      <th># Orden</th>
+      <th>Nombre</th>
+      <th>NIT</th>
+      <th>Fecha</th>
+      <th>Sucursal</th>
+      <th>Total</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+    
+      <% if order.status == true %>
+        <tr class="table-danger">
+      <% end %>
+      <% if order.status == false or order.status.nil? %>
+        <tr class="table-success">
+      <% end %>
+      <% if order.order_state == false %>
+        <tr class="table-warning">
+      <% end %>
+      <% if order.order_state == true %>
+        <tr class="table-danger">
+      <% end %>
+
+        <td>
+          <% if !order.invoice.nil? %>
+            <%= order.invoice.invoice_number %>
+          <% else %>
+            SF
+          <% end %>
+        </td>
+        <td><%= order.id %></td>
+        <td><%= order.name %></td>
+        <td><%= order.nit %></td>
+        <td><%= order.created_at %></td>
+        <td><%= order.branch.name %></td>
+        <td>Bs. <%= order.total_order_amount %></td>
+        <% if order.status == false %>
+          <td>Pendiente</td>
+        <% else %>
+          <td>Cerrada</td>
+        <% end %>
+        <td>
+          <% if order.status == false %>
+            <%= link_to 'Detalles', '/order_details/' + order.id.to_s %>
+          <% else %>
+            <%= link_to 'Detalles', '/orders/' + order.id.to_s +  '/products' %>
+          <% end %>
+
+        </td>
+        <td>
+          <% if order.status == false %>
+            <%= link_to 'Editar datos de cliente', edit_order_path(order) %>
+          <% else %>
+            La órden está cerrada
+          <% end %>
+
+        </td>
+        <td>
+          <% if order.order_state.nil? or order.order_state == true %>
+            <%= link_to 'Anular', '/disable_order/' + order.id.to_s, data: { confirm: 'Está seguro que desea anular la factura?' } %>
+          <% else %>
+            <%= link_to 'Habilitar', '/enable_order/' + order.id.to_s, data: { confirm: 'Está seguro que desea habilitar la factura?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<script>
+	$(document).ready(function(){
+    TableExport(document.getElementById("orders-report"), {
+      headers: true,
+      footer: true,
+      formats: ['xls', 'csv', 'txt'],
+      position: 'top',
+      bootstrap: true
+    });
+	});
+</script>

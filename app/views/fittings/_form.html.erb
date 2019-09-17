@@ -1,0 +1,35 @@
+<%= form_with(model: fitting, local: true) do |form| %>
+  <% if fitting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fitting.errors.count, "error") %> prohibited this fitting from being saved:</h2>
+
+      <ul>
+      <% fitting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :fitting_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Descripción" %>
+    <%= form.text_area :description, id: :fitting_description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Costo" %>
+    <%= form.text_field :cost, id: :fitting_cost, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-primary" %>
+      <%= link_to 'Cancelar', '/fittings', class: "btn btn-danger" %>
+    </center>
+  </div>
+<% end %>

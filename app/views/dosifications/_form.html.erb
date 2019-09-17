@@ -1,0 +1,45 @@
+<%= form_with(model: dosification, local: true) do |form| %>
+  <% if dosification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dosification.errors.count, "error") %> prohibited this dosification from being saved:</h2>
+
+      <ul>
+      <% dosification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Número de autorización" %>
+    <%= form.text_field :authorization_number, id: :dosification_authorization_number, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Llave de dosificación" %>
+    <%= form.text_field :dosification_key, id: :dosification_dosification_key, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Fecha límite" %>
+    <%= form.date_select :valid_until, id: :dosification_valid_until, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Actividad" %>
+    <%= form.text_field :activity, id: :dosification_activity, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Sucursal" %>
+    <%= form.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Seleccione una sucursal"}, {class: "form-control"} %>
+  </div>
+
+  <div class="actions">
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-primary" %>
+      <%= link_to 'Cancelar', '/dosifications', class: "btn btn-danger" %>
+    </center>
+  </div>
+<% end %>

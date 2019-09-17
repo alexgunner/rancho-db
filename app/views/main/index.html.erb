@@ -1,0 +1,137 @@
+<hr class="divider">
+
+<div class="row">
+	<% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/categories.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Categorías</h5>
+		    <p class="card-text">Administración de las categorías para los productos</p>
+		    <center>
+		    	<a href="/categories" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+	<% end %>
+	<% if current_user.user_role.id == 3 and current_user.user_role.id != 4 %>
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/sucursal.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Sucursales</h5>
+		    <p class="card-text">Administración de las sucursales del sistema</p>
+		    <center>
+		    	<a href="/branches" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+	<% end %>
+	<% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/guarniciones.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Guarniciones</h5>
+		    <p class="card-text">Administración de guarniciones para los productos y combos</p>
+		    <center>
+		    	<a href="/fittings" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+</div>
+<% end %>
+<hr class="divider">
+<% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+<div class="row">
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/productos.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Productos</h5>
+		    <p class="card-text">Administración de productos para sucursales</p>
+		    <center>
+		    	<a href="/products" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+	<% end %>
+	<% if current_user.user_role.id != 2 and current_user.user_role.id != 4 %>
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/combos.jpeg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Combos</h5>
+		    <p class="card-text">Administración de combos para sucursales</p>
+		    <center>
+		    	<a href="/combos" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+	<% end %>
+	<% if current_user.user_role.id != 2 or current_user.user_role.id == 4 %>
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/ordenes.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Órdenes</h5>
+		    <p class="card-text">Administración de guarniciones para los productos y combos</p>
+		    <center>
+		    	<a href="/orders" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+</div>
+<% end %>
+<hr class="divider">
+
+<% if current_user.user_role.id == 3 and current_user.user_role.id != 4 %>
+<div class="row">
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/descuentos.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Descuentos</h5>
+		    <p class="card-text">Administración de descuentos</p>
+		    <center>
+		    	<a href="/discounts" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+	<% end %>
+	<% if current_user.user_role.id != 1 and current_user.user_role.id != 4 %>
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/taxes.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Dosificaciones</h5>
+		    <p class="card-text">Administración de dosificaciones para sucursales</p>
+		    <center>
+		    	<a href="/dosifications" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+	<% end %>
+	<% if current_user.user_role.id != 1 or current_user.user_role.id == 4 %>
+	<div class="col-lg-4">
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top" src="/assets/reports.jpg" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Reportes</h5>
+		    <p class="card-text">Administración de reportes</p>
+		    <center>
+		    	<a href="/reports" class="btn btn-primary">Ver</a>
+		    </center>
+		  </div>
+		</div>
+	</div>
+	<% end %>
+</div>

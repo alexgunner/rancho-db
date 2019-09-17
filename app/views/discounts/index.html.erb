@@ -1,0 +1,31 @@
+<h1>Descuentos</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Crear descuento', new_discount_path, class: "btn btn-primary btn-block" %>
+  </div>
+</div>
+
+
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Porcentaje de descuento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discounts.each do |discount| %>
+      <tr>
+        <td><%= discount.name %></td>
+        <td><%= discount.description %></td>
+        <td><%= discount.amount %></td>
+        <td><%= link_to 'Editar', edit_discount_path(discount) %></td>
+        <td><%= link_to 'Eliminar', discount, method: :delete, data: { confirm: 'Está seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,46 @@
+
+
+<h1>Productos</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Crear producto', new_product_path, class: "btn btn-primary btn-block" %>    
+  </div>
+</div>
+
+<table class="table table-tripped table-hover">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Categoría</th>
+      <th>Guarniciones</th>
+      <th>Imagen</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.category.name %></td>
+        <td>
+          <% max = product.fittings.count %>
+          <% product.fittings.each do |fitting| %>
+            <%= fitting.name %>,
+          <% end %>
+        </td>
+        <td><%= image_tag product.picture.url(:thumb) %></td>
+        <td><%= link_to 'Editar', edit_product_path(product) %></td>
+        <td><%= link_to 'Sucursales', '/products/' + product.id.to_s + '/branches' %></td>
+        <!--<td><%= link_to 'Eliminar', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

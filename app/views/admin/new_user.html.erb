@@ -1,0 +1,33 @@
+<h1>Crear usuario</h1>
+<%= form_tag '/create_user', method: 'post' do %>
+  <div class="form-group">
+      <label>Correo electrónico</label>
+      <%= text_field_tag :email, nil, placeholder: 'Ingresa el correo electrónico', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Contraseña</label>
+      <%= password_field_tag :password, nil, placeholder: 'Ingresa la contraseña', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Confirmación de Contraseña</label>
+      <%= password_field_tag :password_confirmation, nil, placeholder: 'Confirma la contraseña', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Sucursal</label>
+      <%= select_tag :branch, options_from_collection_for_select(Branch.all, :id, :name), class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <label>Tipo de usuario</label>
+      <%= select_tag :user_role, options_from_collection_for_select(UserRole.all, :id, :name), class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+      <%= submit_tag 'Aceptar', class: 'btn btn-success' %>
+      <%= link_to 'Cancelar', '/users', class: 'btn btn-danger' %>
+  </div>
+
+<% end %>

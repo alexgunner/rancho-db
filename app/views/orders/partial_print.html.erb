@@ -1,0 +1,43 @@
+
+	<div class="invoice" style="font-size: 13px; text-align: center;">
+		
+			Mikhuna Wok<br>
+			
+			Av. Melchor Urquidi Esq. Av. Portales<br>
+			Tel: 4036000 - 60744426<br>
+		
+		------------------------------------------<br>
+
+		<% total = 0 %>
+
+		<% @items.each do |item| %>
+			<% if item.branch_product_id == nil %>
+				<%= item.quantity %> x <%= Combo.find(item.combo_id).name %> Bs. <%= Combo.find(item.combo_id).sale_cost %> &nbsp Bs. <%= item.quantity * Combo.find(item.combo_id).sale_cost %><br>
+				<% total += item.quantity * Combo.find(item.combo_id).sale_cost %>
+			<% end %>
+			<% if item.combo_id == nil %>
+				<%= item.quantity %> x <%= BranchProduct.find(item.branch_product_id).product.name %> Bs. <%= BranchProduct.find(item.branch_product_id).sale_cost %> &nbsp Bs. <%= item.quantity * BranchProduct.find(item.branch_product_id).sale_cost %><br>
+				<% total += item.quantity * BranchProduct.find(item.branch_product_id).sale_cost %>
+			<% end %>
+		<% end %>
+		<br>
+		------------------------------------------<br>
+		TOTAL: BS. <%= total %><br>
+		<% if !@order.amount_payed.nil? %>
+			Efectivo: Bs. <%= @order.amount_payed %><br>
+			Cambio: Bs. <%= @order.amount_payed - total %><br>
+		<% end %>
+		------------------------------------------<br>
+		<span>Hora: <%= Time.now %></span>
+		Cochabamba - Bolivia<br>
+		<%= @order.name %><br>
+		<%= @order.details %><br>
+		<%= link_to "Orden #" + @order.id.to_s, "/order_details/" + @order.id.to_s, class: "btn btn-danger" %>
+
+	</div>
+
+	<script type="text/javascript">
+		window.onload = function() {
+			window.print();
+		};
+	</script>

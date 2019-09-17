@@ -1,0 +1,247 @@
+order0 = Order.create name: 'SERGIO', nit: '', amount_payed: 40.0, details: 'poco salsa soya', branch_id: 2, status: true, total_order_amount: 32.0
+order0.created_at = '2019-09-04 15:14:14 UTC'
+order0.save
+order1 = Order.create name: '', nit: '967809', amount_payed: 40.0, details: 'arroz y yuca', branch_id: 2, status: true, total_order_amount: 35.0
+order1.created_at = '2019-09-04 17:03:43 UTC'
+order1.save
+Invoice.create order_id: order1.id.to_s, name: '', nit: '967809', invoice_number: 926, invoice_date: '2019-09-04 17:03:43 UTC', invoice_authorization: '384401900088085', invoice_amount: 35.0, invoice_code: '0D-57-0C-84'
+order2 = Order.create name: 'marco', nit: '', amount_payed: 90.0, details: 'yuca arroz papa ensalada', branch_id: 2, status: true, total_order_amount: 84.0
+order2.created_at = '2019-09-04 17:09:33 UTC'
+order2.save
+order3 = Order.create name: 'VARGAS', nit: '3727520016', amount_payed: 100.0, details: '', branch_id: 2, status: true, total_order_amount: 76.0
+order3.created_at = '2019-09-04 17:23:21 UTC'
+order3.save
+Invoice.create order_id: order3.id.to_s, name: 'VARGAS', nit: '3727520016', invoice_number: 927, invoice_date: '2019-09-04 17:23:21 UTC', invoice_authorization: '384401900088085', invoice_amount: 76.0, invoice_code: '60-A5-01-B2-54'
+order4 = Order.create name: 'sergio', nit: '', amount_payed: 50.0, details: '', branch_id: 2, status: true, total_order_amount: 39.0
+order4.created_at = '2019-09-04 17:27:50 UTC'
+order4.save
+order5 = Order.create name: 'HIPERMAXI', nit: '1028627025', amount_payed: 200.0, details: 'arroz y ensalada ', branch_id: 2, status: true, total_order_amount: 164.0
+order5.created_at = '2019-09-04 18:00:46 UTC'
+order5.save
+Invoice.create order_id: order5.id.to_s, name: 'HIPERMAXI', nit: '1028627025', invoice_number: 928, invoice_date: '2019-09-04 18:00:46 UTC', invoice_authorization: '384401900088085', invoice_amount: 164.0, invoice_code: '4C-89-72-EE-3B'
+order6 = Order.create name: 'HIPERMAXI S.A.', nit: '1028627025', amount_payed: 32.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order6.created_at = '2019-09-04 18:19:28 UTC'
+order6.save
+Invoice.create order_id: order6.id.to_s, name: 'HIPERMAXI S.A.', nit: '1028627025', invoice_number: 929, invoice_date: '2019-09-04 18:19:28 UTC', invoice_authorization: '384401900088085', invoice_amount: 32.0, invoice_code: 'CF-08-A4-67'
+order7 = Order.create name: 'HIPERMAXI S.A.', nit: '1028627025', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 164.0
+order7.created_at = '2019-09-04 18:32:50 UTC'
+order7.save
+Invoice.create order_id: order7.id.to_s, name: 'HIPERMAXI S.A.', nit: '1028627025', invoice_number: 930, invoice_date: '2019-09-04 18:32:50 UTC', invoice_authorization: '384401900088085', invoice_amount: 164.0, invoice_code: 'EF-D3-91-7D-40'
+order8 = Order.create name: 'PEÑARRIETA', nit: '3055749', amount_payed: 200.0, details: 'PAPA YUCA-ENSALADA Y ARROZ', branch_id: 2, status: true, total_order_amount: 105.0
+order8.created_at = '2019-09-04 23:16:30 UTC'
+order8.save
+Invoice.create order_id: order8.id.to_s, name: 'PEÑARRIETA', nit: '3055749', invoice_number: 931, invoice_date: '2019-09-04 23:16:30 UTC', invoice_authorization: '384401900088085', invoice_amount: 105.0, invoice_code: '42-E8-8E-5B-D8'
+order9 = Order.create name: 'ANGULO ', nit: '', amount_payed: 40.0, details: 'PAPA Y YUCA', branch_id: 2, status: true, total_order_amount: 35.0
+order9.created_at = '2019-09-04 23:19:24 UTC'
+order9.save
+order10 = Order.create name: 'SOLIS', nit: '', amount_payed: 100.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order10.created_at = '2019-09-05 00:48:27 UTC'
+order10.save
+order11 = Order.create name: 'thiago', nit: '', amount_payed: 43.0, details: 'papa  yuca', branch_id: 2, status: true, total_order_amount: 43.0
+order11.created_at = '2019-09-05 14:56:58 UTC'
+order11.save
+order12 = Order.create name: 'HERBAS', nit: '3515120', amount_payed: 52.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order12.created_at = '2019-09-05 16:32:01 UTC'
+order12.save
+Invoice.create order_id: order12.id.to_s, name: 'HERBAS', nit: '3515120', invoice_number: 932, invoice_date: '2019-09-05 16:32:01 UTC', invoice_authorization: '384401900088085', invoice_amount: 32.0, invoice_code: '9B-AA-CF-DD-0F'
+order13 = Order.create name: 'GARCIA', nit: '', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 8.0
+order13.created_at = '2019-09-05 16:42:45 UTC'
+order13.save
+order14 = Order.create name: 'MIGUEL HECHEVARRIA', nit: '3039939', amount_payed: 100.0, details: 'ARROZ PAPA- PAPA Y ARROZ
+ BIEN COCIDO', branch_id: 2, status: true, total_order_amount: 112.0
+order14.created_at = '2019-09-05 22:00:27 UTC'
+order14.save
+Invoice.create order_id: order14.id.to_s, name: 'MIGUEL HECHEVARRIA', nit: '3039939', invoice_number: 933, invoice_date: '2019-09-05 22:00:27 UTC', invoice_authorization: '384401900088085', invoice_amount: 112.0, invoice_code: 'BA-BF-4A-97'
+order15 = Order.create name: 'danilo', nit: '', amount_payed: 50.0, details: '', branch_id: 2, status: true, total_order_amount: 40.0
+order15.created_at = '2019-09-06 16:23:20 UTC'
+order15.save
+order16 = Order.create name: 'VALENZUELA', nit: '4414323', amount_payed: 52.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order16.created_at = '2019-09-06 16:37:52 UTC'
+order16.save
+Invoice.create order_id: order16.id.to_s, name: 'VALENZUELA', nit: '4414323', invoice_number: 934, invoice_date: '2019-09-06 16:37:52 UTC', invoice_authorization: '384401900088085', invoice_amount: 32.0, invoice_code: 'EB-D8-1F-B1'
+order17 = Order.create name: 'ortiz', nit: '', amount_payed: 100.0, details: '', branch_id: 2, status: true, total_order_amount: 68.0
+order17.created_at = '2019-09-06 17:17:25 UTC'
+order17.save
+order18 = Order.create name: 'MARCO LLANOS', nit: '3566147012', amount_payed: 50.0, details: '', branch_id: 2, status: true, total_order_amount: 39.0
+order18.created_at = '2019-09-06 18:22:45 UTC'
+order18.save
+Invoice.create order_id: order18.id.to_s, name: 'MARCO LLANOS', nit: '3566147012', invoice_number: 935, invoice_date: '2019-09-06 18:22:45 UTC', invoice_authorization: '384401900088085', invoice_amount: 39.0, invoice_code: 'C6-23-C1-25-A5'
+order19 = Order.create name: 'CLARO', nit: '', amount_payed: 100.0, details: '', branch_id: 2, status: true, total_order_amount: 67.0
+order19.created_at = '2019-09-06 21:56:14 UTC'
+order19.save
+order20 = Order.create name: 'CARECES', nit: '7900380', amount_payed: 40.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order20.created_at = '2019-09-07 00:51:11 UTC'
+order20.save
+Invoice.create order_id: order20.id.to_s, name: 'CARECES', nit: '7900380', invoice_number: 936, invoice_date: '2019-09-07 00:51:11 UTC', invoice_authorization: '384401900088085', invoice_amount: 32.0, invoice_code: 'D6-E2-62-39-3E'
+order21 = Order.create name: 'RODRIGUEZ', nit: '823629', amount_payed: 200.0, details: 'ensalada  y yuca', branch_id: 2, status: true, total_order_amount: 99.0
+order21.created_at = '2019-09-07 15:44:55 UTC'
+order21.save
+Invoice.create order_id: order21.id.to_s, name: 'RODRIGUEZ', nit: '823629', invoice_number: 937, invoice_date: '2019-09-07 15:44:55 UTC', invoice_authorization: '384401900088085', invoice_amount: 99.0, invoice_code: '62-03-3D-95-C5'
+order22 = Order.create name: 'ENGEVIX ENGENHARIA E PROTECTOR SA', nit: '306268021', amount_payed: 130.0, details: 'ensalada y ppa yuca y arroz mas ensalada', branch_id: 2, status: true, total_order_amount: 126.0
+order22.created_at = '2019-09-07 16:24:42 UTC'
+order22.save
+Invoice.create order_id: order22.id.to_s, name: 'ENGEVIX ENGENHARIA E PROTECTOR SA', nit: '306268021', invoice_number: 938, invoice_date: '2019-09-07 16:24:42 UTC', invoice_authorization: '384401900088085', invoice_amount: 126.0, invoice_code: '44-B6-79-AA-5E'
+order23 = Order.create name: 'rosel', nit: '', amount_payed: 32.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order23.created_at = '2019-09-07 17:05:27 UTC'
+order23.save
+order24 = Order.create name: 'FERNANDEZ', nit: '4094167', amount_payed: 50.0, details: '', branch_id: 2, status: true, total_order_amount: 48.0
+order24.created_at = '2019-09-07 17:06:53 UTC'
+order24.save
+Invoice.create order_id: order24.id.to_s, name: 'FERNANDEZ', nit: '4094167', invoice_number: 939, invoice_date: '2019-09-07 17:06:53 UTC', invoice_authorization: '384401900088085', invoice_amount: 48.0, invoice_code: '6D-E1-C1-FD-65'
+order25 = Order.create name: 'ZURITA', nit: '3511055018', amount_payed: 40.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order25.created_at = '2019-09-07 17:10:31 UTC'
+order25.save
+Invoice.create order_id: order25.id.to_s, name: 'ZURITA', nit: '3511055018', invoice_number: 940, invoice_date: '2019-09-07 17:10:31 UTC', invoice_authorization: '384401900088085', invoice_amount: 32.0, invoice_code: 'C8-1E-DC-07-12'
+order26 = Order.create name: 'PAZ', nit: '828729', amount_payed: 50.0, details: 'arroz y papa', branch_id: 2, status: true, total_order_amount: 46.0
+order26.created_at = '2019-09-07 17:22:56 UTC'
+order26.save
+Invoice.create order_id: order26.id.to_s, name: 'PAZ', nit: '828729', invoice_number: 941, invoice_date: '2019-09-07 17:22:56 UTC', invoice_authorization: '384401900088085', invoice_amount: 46.0, invoice_code: 'FC-AE-E0-49'
+order27 = Order.create name: 'RIOS', nit: '4053784', amount_payed: 200.0, details: 'YUCA ARROZ-YUCA Y PAPA-ENSALADA YUCA- YUCA YUCA BIEN COCIDO', branch_id: 2, status: true, total_order_amount: 192.0
+order27.created_at = '2019-09-07 17:27:18 UTC'
+order27.save
+Invoice.create order_id: order27.id.to_s, name: 'RIOS', nit: '4053784', invoice_number: 942, invoice_date: '2019-09-07 17:27:18 UTC', invoice_authorization: '384401900088085', invoice_amount: 192.0, invoice_code: '4F-40-DA-2F'
+order28 = Order.create name: 'DORIA MEDINA', nit: '3782454', amount_payed: 73.0, details: 'ARROZ PRIMAVERA Y YUCA', branch_id: 2, status: true, total_order_amount: 63.0
+order28.created_at = '2019-09-07 17:37:42 UTC'
+order28.save
+Invoice.create order_id: order28.id.to_s, name: 'DORIA MEDINA', nit: '3782454', invoice_number: 943, invoice_date: '2019-09-07 17:37:42 UTC', invoice_authorization: '384401900088085', invoice_amount: 63.0, invoice_code: 'AE-0D-BC-41'
+order29 = Order.create name: '', nit: '', amount_payed: 20.0, details: '', branch_id: 2, status: true, total_order_amount: 7.0
+order29.created_at = '2019-09-07 17:47:17 UTC'
+order29.save
+order30 = Order.create name: 'SALVATIER', nit: '', amount_payed: 50.0, details: 'YUCA Y ARROZ- 3-4', branch_id: 2, status: true, total_order_amount: 48.0
+order30.created_at = '2019-09-07 17:49:23 UTC'
+order30.save
+order31 = Order.create name: 'PEPE', nit: '', amount_payed: 20.0, details: '', branch_id: 2, status: true, total_order_amount: 8.0
+order31.created_at = '2019-09-07 22:45:56 UTC'
+order31.save
+order32 = Order.create name: 'SAN MARTIN', nit: '6516190017', amount_payed: 0, details: 'ARROZ Y PAPA YUCA Y PAPA 3-4', branch_id: 2, status: true, total_order_amount: 118.0
+order32.created_at = '2019-09-07 22:49:18 UTC'
+order32.save
+Invoice.create order_id: order32.id.to_s, name: 'SAN MARTIN', nit: '6516190017', invoice_number: 944, invoice_date: '2019-09-07 22:49:18 UTC', invoice_authorization: '384401900088085', invoice_amount: 118.0, invoice_code: '45-65-58-2A-6D'
+order33 = Order.create name: 'DELGADO', nit: '977181', amount_payed: 150.0, details: 'PAPA FRITA- ENSALADA Y YUCA-', branch_id: 2, status: true, total_order_amount: 108.0
+order33.created_at = '2019-09-08 01:05:30 UTC'
+order33.save
+Invoice.create order_id: order33.id.to_s, name: 'DELGADO', nit: '977181', invoice_number: 945, invoice_date: '2019-09-08 01:05:30 UTC', invoice_authorization: '384401900088085', invoice_amount: 108.0, invoice_code: '6B-5B-67-5E'
+order34 = Order.create name: 'TARQUINO', nit: '3614891', amount_payed: 220.0, details: '2 con papa y arroz y 2 con ensalada y papa', branch_id: 2, status: true, total_order_amount: 207.0
+order34.created_at = '2019-09-08 14:59:29 UTC'
+order34.save
+Invoice.create order_id: order34.id.to_s, name: 'TARQUINO', nit: '3614891', invoice_number: 946, invoice_date: '2019-09-08 14:59:29 UTC', invoice_authorization: '384401900088085', invoice_amount: 207.0, invoice_code: '68-6C-16-F1'
+order35 = Order.create name: 'MUÑOZ', nit: '922520', amount_payed: 52.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order35.created_at = '2019-09-08 16:01:58 UTC'
+order35.save
+Invoice.create order_id: order35.id.to_s, name: 'MUÑOZ', nit: '922520', invoice_number: 947, invoice_date: '2019-09-08 16:01:58 UTC', invoice_authorization: '384401900088085', invoice_amount: 32.0, invoice_code: 'F1-D1-2C-35'
+order36 = Order.create name: 'GAMBOA', nit: '3056584', amount_payed: 100.0, details: 'PAPA PAPA PAPA PAPA', branch_id: 2, status: true, total_order_amount: 98.0
+order36.created_at = '2019-09-08 16:08:23 UTC'
+order36.save
+Invoice.create order_id: order36.id.to_s, name: 'GAMBOA', nit: '3056584', invoice_number: 948, invoice_date: '2019-09-08 16:08:23 UTC', invoice_authorization: '384401900088085', invoice_amount: 98.0, invoice_code: '38-31-9B-A9-A9'
+order37 = Order.create name: 'VILLARROEL', nit: '821425011', amount_payed: 60.0, details: 'ENSALADA Y ARROZ', branch_id: 2, status: true, total_order_amount: 48.0
+order37.created_at = '2019-09-08 16:12:48 UTC'
+order37.save
+Invoice.create order_id: order37.id.to_s, name: 'VILLARROEL', nit: '821425011', invoice_number: 949, invoice_date: '2019-09-08 16:12:48 UTC', invoice_authorization: '384401900088085', invoice_amount: 48.0, invoice_code: '8E-8A-35-0A'
+order38 = Order.create name: '', nit: '', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 74.0
+order38.created_at = '2019-09-08 16:47:28 UTC'
+order38.save
+Invoice.create order_id: order38.id.to_s, name: '', nit: '', invoice_number: 950, invoice_date: '2019-09-08 16:47:28 UTC', invoice_authorization: '384401900088085', invoice_amount: 74.0, invoice_code: '98-EC-EB-7B-5B'
+order39 = Order.create name: 'ARACENA', nit: '485908', amount_payed: 201.0, details: 'ENSALADA,YUCA', branch_id: 2, status: true, total_order_amount: 51.0
+order39.created_at = '2019-09-08 16:51:59 UTC'
+order39.save
+Invoice.create order_id: order39.id.to_s, name: 'ARACENA', nit: '485908', invoice_number: 951, invoice_date: '2019-09-08 16:51:59 UTC', invoice_authorization: '384401900088085', invoice_amount: 51.0, invoice_code: 'E4-D3-5E-2F'
+order40 = Order.create name: 'PAREDES', nit: '3431562', amount_payed: 50.0, details: '', branch_id: 2, status: true, total_order_amount: 25.0
+order40.created_at = '2019-09-08 17:13:35 UTC'
+order40.save
+Invoice.create order_id: order40.id.to_s, name: 'PAREDES', nit: '3431562', invoice_number: 952, invoice_date: '2019-09-08 17:13:35 UTC', invoice_authorization: '384401900088085', invoice_amount: 25.0, invoice_code: '40-AC-3B-F7-E3'
+order41 = Order.create name: 'lazare', nit: '', amount_payed: 102.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order41.created_at = '2019-09-08 17:16:13 UTC'
+order41.save
+order42 = Order.create name: 'SALDIAS', nit: '5274959', amount_payed: 50.0, details: '', branch_id: 2, status: true, total_order_amount: 48.0
+order42.created_at = '2019-09-08 17:25:05 UTC'
+order42.save
+Invoice.create order_id: order42.id.to_s, name: 'SALDIAS', nit: '5274959', invoice_number: 953, invoice_date: '2019-09-08 17:25:05 UTC', invoice_authorization: '384401900088085', invoice_amount: 48.0, invoice_code: '21-8D-AA-26'
+order43 = Order.create name: 'ANDRES MANCHEGO', nit: '280402027', amount_payed: 221.0, details: 'PAPAS', branch_id: 2, status: true, total_order_amount: 221.0
+order43.created_at = '2019-09-08 17:29:47 UTC'
+order43.save
+Invoice.create order_id: order43.id.to_s, name: 'ANDRES MANCHEGO', nit: '280402027', invoice_number: 954, invoice_date: '2019-09-08 17:29:47 UTC', invoice_authorization: '384401900088085', invoice_amount: 221.0, invoice_code: '95-CF-AC-D9-CB'
+order44 = Order.create name: 'PEPE', nit: '', amount_payed: 100.0, details: '', branch_id: 2, status: true, total_order_amount: 16.0
+order44.created_at = '2019-09-08 17:39:31 UTC'
+order44.save
+order45 = Order.create name: 'CAMPOS', nit: '1546442', amount_payed: 101.0, details: '2PAPAS,2YUCAS', branch_id: 2, status: true, total_order_amount: 96.0
+order45.created_at = '2019-09-08 17:56:30 UTC'
+order45.save
+Invoice.create order_id: order45.id.to_s, name: 'CAMPOS', nit: '1546442', invoice_number: 955, invoice_date: '2019-09-08 17:56:30 UTC', invoice_authorization: '384401900088085', invoice_amount: 96.0, invoice_code: 'AD-8F-31-EE-3C'
+order46 = Order.create name: 'GONZALES', nit: '', amount_payed: 100.0, details: 'YUCA Y PAPA 3-4', branch_id: 2, status: true, total_order_amount: 64.0
+order46.created_at = '2019-09-08 18:11:03 UTC'
+order46.save
+order47 = Order.create name: 'MURUCHI', nit: '8647982', amount_payed: 106.0, details: 'PAPA Y ARROZ TERMINO MEDIO', branch_id: 2, status: true, total_order_amount: 56.0
+order47.created_at = '2019-09-08 18:30:53 UTC'
+order47.save
+Invoice.create order_id: order47.id.to_s, name: 'MURUCHI', nit: '8647982', invoice_number: 956, invoice_date: '2019-09-08 18:30:53 UTC', invoice_authorization: '384401900088085', invoice_amount: 56.0, invoice_code: 'D2-E1-39-9E-E7'
+order48 = Order.create name: 'CARLOS VILLARPANDO', nit: '4285820', amount_payed: 40.0, details: 'PAPA ARROZ', branch_id: 2, status: true, total_order_amount: 35.0
+order48.created_at = '2019-09-08 18:33:56 UTC'
+order48.save
+Invoice.create order_id: order48.id.to_s, name: 'CARLOS VILLARPANDO', nit: '4285820', invoice_number: 957, invoice_date: '2019-09-08 18:33:56 UTC', invoice_authorization: '384401900088085', invoice_amount: 35.0, invoice_code: 'A0-43-85-12-0C'
+order49 = Order.create name: 'VARNEG', nit: '', amount_payed: 40.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order49.created_at = '2019-09-08 22:29:44 UTC'
+order49.save
+order50 = Order.create name: 'ALCOCER', nit: '', amount_payed: 42.0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order50.created_at = '2019-09-09 00:29:26 UTC'
+order50.save
+order51 = Order.create name: 'davila', nit: '4509247', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 40.0
+order51.created_at = '2019-09-09 17:09:19 UTC'
+order51.save
+Invoice.create order_id: order51.id.to_s, name: 'davila', nit: '4509247', invoice_number: 958, invoice_date: '2019-09-09 17:09:19 UTC', invoice_authorization: '384401900088085', invoice_amount: 40.0, invoice_code: '9A-CD-6B-27'
+order52 = Order.create name: 'ANDRES', nit: '', amount_payed: 60.0, details: 'arroz ,ensalada', branch_id: 2, status: true, total_order_amount: 56.0
+order52.created_at = '2019-09-10 00:09:51 UTC'
+order52.save
+order53 = Order.create name: 'andres', nit: '', amount_payed: 0, details: 'papa,ensalada.guarnicion extra arroz', branch_id: 2, status: true, total_order_amount: 50.0
+order53.created_at = '2019-09-10 00:23:36 UTC'
+order53.save
+order54 = Order.create name: 'ERICK VARGAS', nit: '2284797', amount_payed: 0, details: 'ensalada-yuca ambos', branch_id: 2, status: true, total_order_amount: 134.0
+order54.created_at = '2019-09-10 15:50:39 UTC'
+order54.save
+Invoice.create order_id: order54.id.to_s, name: 'ERICK VARGAS', nit: '2284797', invoice_number: 959, invoice_date: '2019-09-10 15:50:39 UTC', invoice_authorization: '384401900088085', invoice_amount: 134.0, invoice_code: 'C5-50-4B-8C-29'
+order55 = Order.create name: 'CHARLIE JANETTE VIVANCOS FLORES', nit: '7706612019', amount_payed: 0, details: 'arroz-yuca', branch_id: 2, status: true, total_order_amount: 81.0
+order55.created_at = '2019-09-10 15:53:15 UTC'
+order55.save
+Invoice.create order_id: order55.id.to_s, name: 'CHARLIE JANETTE VIVANCOS FLORES', nit: '7706612019', invoice_number: 960, invoice_date: '2019-09-10 15:53:15 UTC', invoice_authorization: '384401900088085', invoice_amount: 81.0, invoice_code: '11-A7-98-A5-A8'
+order56 = Order.create name: '', nit: '', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 7.0
+order56.created_at = '2019-09-10 16:07:25 UTC'
+order56.save
+order57 = Order.create name: 'CABALLERO', nit: '3073397', amount_payed: 100.0, details: '', branch_id: 2, status: true, total_order_amount: 45.0
+order57.created_at = '2019-09-10 16:19:37 UTC'
+order57.save
+Invoice.create order_id: order57.id.to_s, name: 'CABALLERO', nit: '3073397', invoice_number: 961, invoice_date: '2019-09-10 16:19:37 UTC', invoice_authorization: '384401900088085', invoice_amount: 45.0, invoice_code: 'B8-F0-66-44'
+order58 = Order.create name: '', nit: '', amount_payed: 0, details: 'papa', branch_id: 2, status: true, total_order_amount: 8.0
+order58.created_at = '2019-09-10 16:21:44 UTC'
+order58.save
+order59 = Order.create name: 'antonio patiño', nit: '5248361', amount_payed: 100.0, details: 'papa-yuca', branch_id: 2, status: true, total_order_amount: 74.0
+order59.created_at = '2019-09-10 16:22:54 UTC'
+order59.save
+Invoice.create order_id: order59.id.to_s, name: 'antonio patiño', nit: '5248361', invoice_number: 962, invoice_date: '2019-09-10 16:22:54 UTC', invoice_authorization: '384401900088085', invoice_amount: 74.0, invoice_code: '55-86-C4-02-FD'
+order60 = Order.create name: '0', nit: '4380250', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 32.0
+order60.created_at = '2019-09-10 16:51:32 UTC'
+order60.save
+Invoice.create order_id: order60.id.to_s, name: '0', nit: '4380250', invoice_number: 963, invoice_date: '2019-09-10 16:51:32 UTC', invoice_authorization: '384401900088085', invoice_amount: 32.0, invoice_code: '73-EB-83-E3'
+order61 = Order.create name: '0', nit: '', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 64.0
+order61.created_at = '2019-09-10 16:53:31 UTC'
+order61.save
+Invoice.create order_id: order61.id.to_s, name: '0', nit: '', invoice_number: 964, invoice_date: '2019-09-10 16:53:31 UTC', invoice_authorization: '384401900088085', invoice_amount: 64.0, invoice_code: 'B0-47-19-2D-48'
+order62 = Order.create name: 'alaris', nit: '', amount_payed: 100.0, details: 'yuca-arroz  3-4  paps', branch_id: 2, status: true, total_order_amount: 86.0
+order62.created_at = '2019-09-10 17:25:10 UTC'
+order62.save
+order63 = Order.create name: '', nit: '', amount_payed: 0, details: '', branch_id: 2, status: true, total_order_amount: 0
+order63.created_at = '2019-09-10 17:49:20 UTC'
+order63.save
+order64 = Order.create name: 'Garron', nit: '5158913', amount_payed: 50.0, details: 'yuca', branch_id: 2, status: true, total_order_amount: 38.0
+order64.created_at = '2019-09-10 18:49:48 UTC'
+order64.save
+Invoice.create order_id: order64.id.to_s, name: 'Garron', nit: '5158913', invoice_number: 965, invoice_date: '2019-09-10 18:49:48 UTC', invoice_authorization: '384401900088085', invoice_amount: 38.0, invoice_code: '35-A4-63-41'
+order65 = Order.create name: 'TAMAYO', nit: '2318887', amount_payed: 0, details: 'papa y yuca termino bien cocido', branch_id: 2, status: true, total_order_amount: 99.0
+order65.created_at = '2019-09-10 23:56:18 UTC'
+order65.save
+Invoice.create order_id: order65.id.to_s, name: 'TAMAYO', nit: '2318887', invoice_number: 966, invoice_date: '2019-09-10 23:56:18 UTC', invoice_authorization: '384401900088085', invoice_amount: 99.0, invoice_code: 'EC-05-37-E4-4B'
+order66 = Order.create name: 'VLAHOVIC SRL', nit: '371577021', amount_payed: 0, details: ' PAPA Y ENSALADA ARROZ Y ENSALADA TERMINO MEDIO', branch_id: 2, status: true, total_order_amount: 90.0
+order66.created_at = '2019-09-11 00:27:58 UTC'
+order66.save
+Invoice.create order_id: order66.id.to_s, name: 'VLAHOVIC SRL', nit: '371577021', invoice_number: 967, invoice_date: '2019-09-11 00:27:58 UTC', invoice_authorization: '384401900088085', invoice_amount: 90.0, invoice_code: '11-40-3D-8F-C8'
+order67 = Order.create name: '', nit: '', amount_payed: 0, details: '', branch_id: 2, status: false, total_order_amount: 0
+order67.created_at = '2019-09-11 15:48:30 UTC'
+order67.save

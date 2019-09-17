@@ -1,0 +1,238 @@
+<% if @order.status == false %>
+
+<%= form_tag("/order_now", method: "get") do %>
+
+  <div class="row">
+
+    <div class="col-lg-4">
+      <h5>Productos</h5>
+      <% total = 0 %>
+
+      <table class="table table-hover table-stripped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Subtotal</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <% if order_item.branch_product_id != nil %>
+              <tr>
+                <td><%= BranchProduct.find(order_item.branch_product_id).product.name %></td>
+                
+                <td><%= order_item.quantity %></td>
+                <td>Bs. <%= BranchProduct.find(order_item.branch_product_id).sale_cost %></td>
+                <td>
+                  <% total += order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+                  Bs. <%= order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+                </td>
+                <td>
+                  <%= link_to "Quitar", "/remove_item/#{order_item.id}" %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+          <tr>
+              <td colspan="4">
+                TOTAL
+              </td>
+              <td>
+                Bs. <%= total - total/100 * @discount_p.amount %>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-2">
+      <h5>Datos del cliente</h5>
+      <strong>Nombre:</strong> 
+      <%= text_field_tag :name, @order.name, class: "form-control" %>
+      <strong>NIT:</strong> 
+      <%= text_field_tag :nit, @order.nit, class: "form-control" %>
+    </div>
+
+    <div class="col-lg-2">
+      <h5>Descuentos</h5>
+      <strong>Descuento:</strong>
+      <%= collection_select :discount, :discount, Discount.all, :id, :name, {prompt: "Ninguno", selected: @discount_p.id}, {class: "form-control"} %>
+    </div>
+
+    <div class="col-lg-2">
+      <h5>Operaciones</h5>
+      <strong>Órden:</strong> #<%= @order.id %>
+      <%= submit_tag("Registrar", class: "btn btn-primary btn-block")  %>
+      <% if @order.status == false %>
+
+          <%= link_to "Cerrar Órden", '/orders/' + @order.id.to_s + '/close', class: "btn btn-success btn-block" %>
+          <%= link_to "Imprimir comanda", '/orders/' + @order.id.to_s + '/partial_print', class: "btn btn-primary btn-block" %>
+        <% else %>
+          <%= link_to "Imprimir factura", '/orders/' + @order.id.to_s + '/print', class: "btn btn-primary btn-block" %>
+        <% end %>
+    </div>
+    <div class="col-lg-2">
+      <strong>Detalles:</strong> 
+      <%= text_area_tag :details, @order.details, class: "form-control", rows: 2 %>
+      <strong>Efectivo:</strong>
+      <%= number_field_tag :amount_payed, @order.amount_payed, class: "form-control" %>
+      <% total1 = 0 %>
+      <% @order_items.each do |order_item| %>
+        <% if order_item.branch_product_id != nil %>
+          <% total1 += order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+        <% end %>
+      <% end %>
+      <% if @order.amount_payed != nil %>
+        <strong>Cambio: </strong> Bs. <%= @order.amount_payed - total1 %>
+      <% end %>
+    </div>
+  </div>
+  
+  <br><br>
+	
+
+	<div class="row">
+    <% @products.each do |product| %>
+        <div class="col-lg-2">
+          <div class="card">
+            <% if product.picture.url == "/images/original/missing.png" %>
+              <img class="card-img-top" src="/assets/no-image.png">
+            <% else %>
+              <img class="card-img-top" src="<%= product.picture.url %>">
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              
+              <p>
+                
+                  Bs. <span id="product-cost-<%= product.id%>"><%= BranchProduct.find_by(product_id: product.id).sale_cost %></span> 
+              
+              </p>
+              <div class="form-group">
+                <label>Cantidad: </label>
+                <input type="number" name="products[<%= product.id %>][]" id="product<%= product.id %>" value="0" min="0" style="width: 70px;" onchange="register(<%= product.id %>)">
+
+              </div>
+            </div> 
+          </div>
+        </div>
+      
+    <% end %> 
+  </div>	
+
+	
+  <br>
+	
+
+	
+
+	<input id="order_id" name="order_id" type="hidden" value="<%= @order.id %>">
+
+	
+  <div class="row">
+
+    
+<% end %>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Órden #<%= @order.id %></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% total = 0 %>
+
+        <table class="table table-hover table-stripped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio unitario</th>
+              <th>Subtotal</th>
+              <th colspan="4"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @order_items.each do |order_item| %>
+              <% if order_item.branch_product_id != nil %>
+                <tr>
+                  <td><%= BranchProduct.find(order_item.branch_product_id).product.name %></td>
+                  
+                  <td><%= order_item.quantity %></td>
+                  <td>Bs. <%= BranchProduct.find(order_item.branch_product_id).sale_cost %></td>
+                  <td>
+                    <% total += order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+                    Bs. <%= order_item.quantity * BranchProduct.find(order_item.branch_product_id).sale_cost %>
+                  </td>
+                  <td>
+                    <%= link_to "Quitar", "/remove_item/#{order_item.id}" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+
+        <br>
+
+        
+
+        
+
+        <hr class="divider">
+        <strong>Total parcial:</strong> Bs. <span id="order_total"><%= total %></span><br>
+        <strong>Descuento:</strong> <span id="order_total"><%= @discount_p.name %>(-%<%= @discount_p.amount %>) = Bs. <%= total/100 * @discount_p.amount %></span><br>
+        <strong>Total:</strong> Bs. <%= total - total/100 * @discount_p.amount %><br>
+
+        <% if @order.status == false %>
+          <%= link_to "Cerrar Órden", '/orders/' + @order.id.to_s + '/close', class: "btn btn-primary" %>
+          <%= link_to "Imprimir comanda", '/orders/' + @order.id.to_s + '/partial_print', class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Imprimir factura", '/orders/' + @order.id.to_s + '/print', class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<br>
+<br>
+
+<script type="text/javascript">
+
+
+  var total = 0;
+
+  function register(product_id){
+    var product_amount;
+    var product_cost;
+
+    product_amount = $('#product'+product_id).val();
+    product_cost = $('#product-cost-'+product_id).html();
+    total += (parseFloat(product_amount) * parseFloat(product_cost));
+    console.log(total);
+  }
+
+  $(document).ready(function(){
+    var total = 0;
+
+    $('input[id=product1').change(function() { 
+      
+    });
+  });
+
+  
+</script>

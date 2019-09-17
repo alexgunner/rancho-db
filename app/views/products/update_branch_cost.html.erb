@@ -1,0 +1,14 @@
+<%= form_tag("/update_branch_cost_form/" + @product_branch.id.to_s, method: "post") do %>
+  <div class="form-group">
+  	<%= label_tag(:cost, "Precio:") %>
+	  <%= number_field_tag(:cost, @product_branch.sale_cost, class: "form-control") %>
+  </div>
+  
+  <div class="form-group">
+    <center>
+      <%= submit_tag("Agregar", class: "btn btn-success") %>  
+      <a href="/products/<%= @product_branch.product.id.to_s %>/branches" class="btn btn-danger">Cancelar</a>
+    </center>
+  </div>
+  
+<% end %>

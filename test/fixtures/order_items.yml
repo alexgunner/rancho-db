@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  branch_product_id: 1
+  combo_id: 1
+  quantity: 1
+
+two:
+  branch_product_id: 1
+  combo_id: 1
+  quantity: 1

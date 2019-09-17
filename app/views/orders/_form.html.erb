@@ -1,0 +1,35 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :order_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "NIT" %>
+    <%= form.text_field :nit, id: :order_nit, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Sucursal" %>
+    <%= form.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Seleccione una sucursal", selected: 2}, {class: "form-control"} %>
+  </div>
+
+  <div class="actions">
+    <center>
+      <%= form.submit "Aceptar", class: "btn btn-primary" %>
+      <%= link_to 'Cancelar', '/orders', class: "btn btn-danger" %>
+    </center>
+  </div>
+<% end %>

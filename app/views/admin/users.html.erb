@@ -1,0 +1,47 @@
+<h1>Usuarios</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Crear usuario', '/new_user', class: "btn btn-primary btn-block" %>
+  </div>
+</div>
+
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr>
+      <th>Correo electrónico</th>
+      <th>Sucursales</th>
+      <th>Tipo de usuario</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.branch.nil? %>
+            Sin sucursal asignada
+          <% else %>
+            <%= user.branch.name %> - 
+            <% user.user_branches.each do |user_branch| %>
+              <%= user_branch.branch.name %> - 
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if user.user_role.nil? %>
+            Administrador del sistema
+          <% else %>
+            <%= user.user_role.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Agregar sucursal', '/add_branch_to_user/' + user.id.to_s %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

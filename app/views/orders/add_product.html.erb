@@ -1,0 +1,10 @@
+<%= form_tag("/orders/" + @order.id.to_s + "/products/create_product", method: "post") do %>
+ 
+  <%= label_tag(:product, "Producto:") %>  
+  <%= collection_select(:product, :product_id, @products, :id, :name) %><br>
+
+  <%= label_tag(:quantity, "Cantidad:") %>
+  <%= text_field_tag(:quantity) %><br>
+
+  <%= submit_tag("Agregar") %>
+<% end %>

@@ -1,0 +1,13 @@
+<%= form_tag("/add_branch_to_user_post/" + @user.id.to_s, method: "post") do %>
+  <div class="form-group">
+  	<%= label_tag(:cost, "Sucursal:") %>  
+	<%= collection_select :branch_id, :branch_id, Branch.all, :id, :name, {prompt: "Ninguno"}, {class: "form-control"} %>
+  </div>
+  
+  <div class="form-group">
+    <center>
+      <%= submit_tag("Agregar", class: "btn btn-success") %>  
+    </center>
+  </div>
+  
+<% end %>

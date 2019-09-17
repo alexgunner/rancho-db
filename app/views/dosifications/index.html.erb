@@ -1,0 +1,42 @@
+
+
+<h1>Dosificaiones</h1>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= link_to 'Crear dosificación', new_dosification_path, class: "btn btn-primary btn-block" %>
+  </div>
+  <div class="col-lg-3">
+    <%= link_to 'Probar código de control', '/code_control_test', class: "btn btn-primary btn-block" %>
+  </div>
+</div>
+
+<table class="table table-tripped table-hover">
+  <thead>
+    <tr>
+      <th>Número de autorización</th>
+      <th>Llave de dosificación</th>
+      <th>Fecha līmite</th>
+      <th>Actividad</th>
+      <th>Sucursal</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dosifications.each do |dosification| %>
+      <tr>
+        <td><%= dosification.authorization_number %></td>
+        <td><%= dosification.dosification_key %></td>
+        <td><%= dosification.valid_until %></td>
+        <td><%= dosification.activity %></td>
+        <td><%= dosification.branch.name %></td>
+        <td><%= link_to 'Editar', edit_dosification_path(dosification) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
